@@ -1,9 +1,9 @@
 'use strict';
 
-let money = 50000;
+let money = +prompt('Ваш месячный доход?', 50000);
 let income = 'фриланс';
-let addExpenses = "УЧЕБА, КОММУНАЛКА, ДОСУГ";
-let deposit = true;
+let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит');
+let deposit = confirm('Есть ли у вас депозит в банке?');
 let mission = 500000;
 let period = 10;
 
@@ -23,12 +23,6 @@ console.log(budgetDay);
 
 
 // LESSON03
-
-money = +prompt('Ваш месячный доход?', 50000);
-
-addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит');
-
-deposit = confirm('Есть ли у вас депозит в банке?');
 
 let expenses1 = prompt('Введите обязательную статью расходов?');
 let amount1 = +prompt('Во сколько это обойдется?');
