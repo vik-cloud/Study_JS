@@ -1,7 +1,14 @@
 'use strict';
 
-let money = +prompt('Ваш месячный доход?', 50000);
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+let money; 
 let income = 'фриланс';
+
+start();
+
 let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит');
 let deposit = confirm('Есть ли у вас депозит в банке?');
 let mission = 500000;
@@ -11,6 +18,16 @@ let period = 10;
 function showTypeOf(data) {
   console.log('Тип данных значения "' + data + '":', typeof data);
 } 
+
+
+function start() {
+  money = +prompt('Ваш месячный доход?', 50000);
+  while(isNaN(money) || money.trim() === ''  ){
+    money = +prompt('Ваш месячный доход?', 50000);
+  }
+}
+
+
 
 showTypeOf(money);
 showTypeOf(income);
@@ -26,17 +43,17 @@ let amount2 = +prompt('Во сколько это обойдется?');
 
 function getExpensesMonth() {
   return amount1 + amount2;
-}; 
+}
 let expensesMonth = getExpensesMonth();
 
 function getAccumulatedMonth() {
  return money - expensesMonth;
-}; 
+}
 let accumulatedMonth = getAccumulatedMonth();
 
 function getTargetMonth() {
   return  Math.ceil(mission / accumulatedMonth);
-}; 
+}
 let targetMonth = getTargetMonth();
 
 
