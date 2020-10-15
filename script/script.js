@@ -5,7 +5,6 @@ function isNumber(n) {
 }
 
 
-
 let money; 
 let income = 'фриланс';
 
@@ -44,13 +43,15 @@ function getExpensesMonth() {
   let sum = 0;
   for (let i=0; i<2; i++){
     expenses[i] = prompt('Введите обязательную статью расходов?');
-    sum += +prompt('Во сколько это обойдется?', 10000);
+    let mon = prompt('Во сколько это обойдется?', 10000);
+    while (!isNumber(mon)){
+    mon = prompt('Повторите ввод. Во сколько это обойдется?', 10000);
+    }
+    sum += +mon;
   }
   return sum;
+      
 }
-
-
-
 
 let expensesMonth = getExpensesMonth();
 
@@ -65,8 +66,8 @@ function getTargetMonth() {
 let targetMonth = getTargetMonth();
 
 
-if (accumulatedMonth < 0){
-  console.log('Цель недостижима, Вы в убытке!');
+  if (targetMonth < 0){
+  console.log('Цель не будет достигнута');
 } else {
   console.log('Цель будет достигнута за', targetMonth, 'месяцев');
 }
