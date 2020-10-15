@@ -4,6 +4,8 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+
+
 let money; 
 let income = 'фриланс';
 
@@ -21,11 +23,14 @@ function showTypeOf(data) {
 
 
 function start() {
-  money = +prompt('Ваш месячный доход?', 50000);
-  while(isNaN(money) || money.trim() === ''  ){
-    money = +prompt('Ваш месячный доход?', 50000);
+  do {
+    money = prompt('Ваш месячный доход?', 50000);
   }
+  while(!isNumber(money));
+  return money;
 }
+
+
 
 
 
@@ -35,10 +40,21 @@ showTypeOf(addExpenses);
 
 console.log(addExpenses.toLowerCase().split(', '));
 
+
 let expenses1 = prompt('Введите обязательную статью расходов?');
+
+
+
 let amount1 = +prompt('Во сколько это обойдется?');
+
+
+
 let expenses2 = prompt('Введите обязательную статью расходов?');
+
+
+
 let amount2 = +prompt('Во сколько это обойдется?');
+
 
 
 function getExpensesMonth() {
