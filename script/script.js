@@ -31,9 +31,6 @@ function start() {
 }
 
 
-
-
-
 showTypeOf(money);
 showTypeOf(income);
 showTypeOf(addExpenses);
@@ -41,25 +38,20 @@ showTypeOf(addExpenses);
 console.log(addExpenses.toLowerCase().split(', '));
 
 
-let expenses1 = prompt('Введите обязательную статью расходов?');
-
-
-
-let amount1 = +prompt('Во сколько это обойдется?');
-
-
-
-let expenses2 = prompt('Введите обязательную статью расходов?');
-
-
-
-let amount2 = +prompt('Во сколько это обойдется?');
-
-
 
 function getExpensesMonth() {
-  return amount1 + amount2;
+  let expenses = [];
+  let sum = 0;
+  for (let i=0; i<2; i++){
+    expenses[i] = prompt('Введите обязательную статью расходов?');
+    sum += +prompt('Во сколько это обойдется?', 10000);
+  }
+  return sum;
 }
+
+
+
+
 let expensesMonth = getExpensesMonth();
 
 function getAccumulatedMonth() {
