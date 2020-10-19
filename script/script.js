@@ -10,7 +10,7 @@ let gameFunc = function() {
   let randomNum = Math.floor(Math.random() * 100 + 1); 
   let gameSearch = function() {
     let num = prompt('Угадай число от 1 до 100');
-    console.log(randomNum);
+    // console.log(randomNum);
     if(num === null) {
       alert('Игра окончена');
 
