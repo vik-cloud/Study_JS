@@ -17,10 +17,11 @@ let money,
       deposit: false,
       expenses: {},
       getExpensesMonth: function() {
-
-    
-          return 2000;
-
+          let sum = 0;
+          for(let key in appData.expenses) {
+            sum += appData.expenses[key];
+          }
+          return sum;
         },
       getAccumulatedMonth: function() {
           return money - appData.expensesMonth;
@@ -45,7 +46,6 @@ let money,
           }
         },
       asking: function() {
-
         let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит');
         appData.addExpenses = addExpenses.toLowerCase().split(', ');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
@@ -56,17 +56,12 @@ let money,
             value = prompt('Повторите ввод. Во сколько это обойдется?', 10000);
           }
           appData.expenses[key] = +value;
-          // console.log(appData.expenses);
         }
-
-
-
       }
     } // End appData{}
 
 appData.asking();
 start();
-
 
 let mission = 500000,
     period = 10,
@@ -82,7 +77,6 @@ function start() {
   return money;
 }
 
-
 if (targetMonth < 0){
   console.log('Цель не будет достигнута');
 } else {
@@ -96,6 +90,3 @@ console.log('Расходы за месяц:', expensesMonth, 'руб.');
 
 appData.getStatusIncome();
 
-
-// console.log('money ', money)
-// console.log('appData.budget ', appData.budget)
