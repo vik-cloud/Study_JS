@@ -6,6 +6,7 @@ function isNumber(n) {
 let money;
 
 
+
 start();
 
 
@@ -20,6 +21,9 @@ let appData = {
       addExpenses: [],
       deposit: false,
       expenses: {},
+      period: 3,
+      moneyDeposit: 0,
+      percentDeposit: 0,
       getExpensesMonth: function() {
           for(let key in appData.expenses) {
             appData.expensesMonth += appData.expenses[key];
@@ -51,6 +55,29 @@ let appData = {
           }
         },
       asking: function() {
+
+        if(true) {
+          let itemIncome = prompt('Вид дополнительного зароботка', 'Фриланс').trim();
+          // itemIncome = +itemIncome;
+          // console.log(itemIncome.trim().length < 5);
+          // console.log('itemIncome', typeof itemIncome, '>',itemIncome,'<');
+          // console.log((5 * 'sds').length);
+          // console.log(!isNaN(+itemIncome))
+
+
+          while(itemIncome.length < 2 || !isNaN(+itemIncome)) { 
+            itemIncome = prompt('Вид дополнительного зароботка_2', 'Фриланс');
+            
+          }
+
+          let cashIncome = prompt('Сумма дополнительного зароботок', '5000');
+          while(!isNumber(cashIncome)) {
+            cashIncome = prompt('Сумма дополнительного зароботок', '5000');
+          }
+   
+          // console.log(cashIncome);
+        }
+
         let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит');
         appData.addExpenses = addExpenses.toLowerCase().split(', ');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
@@ -93,10 +120,10 @@ console.log('Расходы за месяц:', appData.expensesMonth, 'руб.')
 
 appData.getStatusIncome(); 
 
-console.log('Наша программа включает в себя данные:')
-for(let key in appData){
-  console.log(key, ':', appData[key])
-}
+// console.log('Наша программа включает в себя данные:')
+// for(let key in appData){
+//   console.log(key, ':', appData[key])
+// }
 
 
 
