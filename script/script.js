@@ -56,23 +56,14 @@ let appData = {
         },
       asking: function() {
 
-        if(true) {
+        if(confirm('Есть ли у Вас дополнитеьный зароботок?')) {
           let itemIncome = prompt('Вид дополнительного зароботка', 'Фриланс').trim();
-          // itemIncome = +itemIncome;
-          // console.log(itemIncome.trim().length < 5);
-          // console.log('itemIncome', typeof itemIncome, '>',itemIncome,'<');
-          // console.log((5 * 'sds').length);
-          // console.log(!isNaN(+itemIncome))
-
-
-          while(itemIncome.length < 2 || !isNaN(+itemIncome)) { 
-            itemIncome = prompt('Вид дополнительного зароботка_2', 'Фриланс');
-            
+          while(itemIncome.length < 2 || !isNaN(parseFloat(itemIncome))) {
+            itemIncome = prompt('Вид дополнительного зароботка', 'Фриланс');
           }
-
-          let cashIncome = prompt('Сумма дополнительного зароботок', '5000');
+          let cashIncome = prompt('Сумма дополнительного зароботок в меясц', '5000');
           while(!isNumber(cashIncome)) {
-            cashIncome = prompt('Сумма дополнительного зароботок', '5000');
+            cashIncome = prompt('Сумма дополнительного зароботок в меясц', '5000');
           }
    
           // console.log(cashIncome);
