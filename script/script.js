@@ -130,5 +130,10 @@ if (appData.targetMonth < 0){
 console.log('Расходы за месяц:', appData.expensesMonth, 'руб.');
 appData.getStatusIncome(); 
 
-// appData.getInfoDeposit();
-// console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSavedMoney());
+
+appData.addExpenses.forEach(function(item, i, arr) {
+  arr[i] = item.substring(0, 1).toUpperCase() + item.substring(1)
+})
+console.log(appData.addExpenses.join(', '));
+
+
