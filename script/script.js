@@ -104,7 +104,7 @@ let appData = {
         return appData.budgetMonth * appData.period;
       }
     } // End appData{}
-
+              
 // appData.getInfoDeposit();
 appData.asking();
 appData.getExpensesMonth();
