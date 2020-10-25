@@ -30,4 +30,6 @@ bookListItemAll[47].after(bookListItemAll[55]);
 bookListItemAll[53].after(bookListItemAll[51]);
 
 
+bookListAll[2].insertAdjacentHTML('beforeend', '<li>Глава 8: За пределами ES6</li>');
+bookListAll[2].append(bookListItemAll[26]);
 
