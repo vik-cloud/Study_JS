@@ -1,12 +1,14 @@
 'use strict';
 
+let btnIncomeAdd = document.querySelector('.income_add'),
+    incomeItems = document.querySelectorAll('.income-items');
+
 const btnStart = document.getElementById('start'),
 
       // btnAll =  document.getElementsByTagName('button'),
       // btnIncomeAdd = btnAll[0],
       // btnExpensesAdd = btnAll[1],
-      btnIncomeAdd = document.querySelector('.income_add'),
-      incomeItems = document.querySelectorAll('.income-items'),
+      
       
       
 
@@ -89,7 +91,10 @@ let appData = {
       addItemIncome: function() {
         let incomeItemsClone = incomeItems[0].cloneNode(true);
         incomeItems[0].parentNode.insertBefore(incomeItemsClone, btnIncomeAdd);
-        // console.log('ЗБС')
+        incomeItems = document.querySelectorAll('.income-items');
+        if(incomeItems.length === 3){
+          btnIncomeAdd.style.display = 'none';
+        }
       },
       getExpensesMonth: function() {
           for(let key in appData.expenses) {
