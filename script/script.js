@@ -28,19 +28,13 @@ let btnIncomeAdd = document.querySelector('.income_add'),
     expensesItems = document.querySelectorAll('.expenses-items');
 
 
-      console.log(expensesItems); //test var
-      console.log(btnExpensesAdd); //test var
-
+      // console.log(expensesItems[0]); //test var
+      // console.log(btnExpensesAdd); //test var
 
 
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
-// let money;
-
-// appData.start();
-
-
 
 
 let appData = {
@@ -58,25 +52,18 @@ let appData = {
       moneyDeposit: 0,
       percentDeposit: 0,
       start: function() {
-        // do {
-        //   money = prompt('Ваш месячный доход?', 50000);
-        // }
-        // while(!isNumber(money));
-        // money = +money;
-
         appData.budget = salaryAmount.value;
-        console.log(salaryAmount.value);
-
         if(appData.budget === ''){
           alert('Поле "Месячный доход" пустое, оно должно быть заполнено');
           return;
         }
-        // appData.asking();
-        // appData.getExpensesMonth();
-        // appData.getBudget(); 
+        appData.getIncome();
+        appData.getExpenses();
+        appData.getExpensesMonth();
+        appData.getBudget(); 
         // return money;
       },
-      addItemIncome: function() {
+      addIncomeBlock: function() {
         let incomeItemsClone = incomeItems[0].cloneNode(true);
         incomeItems[0].parentNode.insertBefore(incomeItemsClone, btnIncomeAdd);
         incomeItems = document.querySelectorAll('.income-items');
@@ -84,7 +71,7 @@ let appData = {
           btnIncomeAdd.style.display = 'none';
         }
       },
-      addItemExpenses: function() {
+      addExpensesBlock: function() {
         let expensesItemsClone = expensesItems[0].cloneNode(true);
         expensesItems[0].parentNode.insertBefore(expensesItemsClone, btnExpensesAdd);
         expensesItems = document.querySelectorAll('.expenses-items');
@@ -122,33 +109,54 @@ let appData = {
               break;
           }
         },
-      asking: function() {
-        if(confirm('Есть ли у Вас дополнитеьный зароботок?')) {
-          let itemIncome = prompt('Вид дополнительного зароботка', 'Фриланс').trim();
-          while(itemIncome.length < 2 || !isNaN(parseFloat(itemIncome))) {
-            itemIncome = prompt('Вид дополнительного зароботка', 'Фриланс');
-          }
-          let cashIncome = prompt('Сумма дополнительного зароботок в меясц', '5000');
-          while(!isNumber(cashIncome)) {
-            cashIncome = prompt('Сумма дополнительного зароботок в меясц', '5000');
-          }
-          appData.income[itemIncome] = +cashIncome;
-        }
+      // asking: function() {
+      //   if(confirm('Есть ли у Вас дополнитеьный зароботок?')) {
+      //     let itemIncome = prompt('Вид дополнительного зароботка', 'Фриланс').trim();
+      //     while(itemIncome.length < 2 || !isNaN(parseFloat(itemIncome))) {
+      //       itemIncome = prompt('Вид дополнительного зароботка', 'Фриланс');
+      //     }
+      //     let cashIncome = prompt('Сумма дополнительного зароботок в меясц', '5000');
+      //     while(!isNumber(cashIncome)) {
+      //       cashIncome = prompt('Сумма дополнительного зароботок в меясц', '5000');
+      //     }
+      //     appData.income[itemIncome] = +cashIncome;
+      //   }
 
-        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит');
-        appData.addExpenses = addExpenses.toLowerCase().split(', ');
-        appData.deposit = confirm('Есть ли у вас депозит в банке?');
-        for (let i=0; i<2; i++){
-          let key = prompt('Введите обязательную статью расходов?');
-          while(key.length < 2 || !isNaN(parseFloat(key))){
-            key = prompt('Введите обязательную статью расходов?');
-          }
-          let value = prompt('Во сколько это обойдется?', 10000);
-          while (!isNumber(value)){
-            value = prompt('Повторите ввод. Во сколько это обойдется?', 10000);
-          }
-          appData.expenses[key] = +value;
-        }
+        
+      //   let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит');
+      //   appData.addExpenses = addExpenses.toLowerCase().split(', ');
+      //   appData.deposit = confirm('Есть ли у вас депозит в банке?');
+      //   for (let i=0; i<2; i++){
+      //     let key = prompt('Введите обязательную статью расходов?');
+      //     while(key.length < 2 || !isNaN(parseFloat(key))){
+      //       key = prompt('Введите обязательную статью расходов?');
+      //     }
+      //     let value = prompt('Во сколько это обойдется?', 10000);
+      //     while (!isNumber(value)){
+      //       value = prompt('Повторите ввод. Во сколько это обойдется?', 10000);
+      //     }
+      //     appData.expenses[key] = +value;
+      //   }
+      // },
+      getExpenses: function() {
+        expensesItems.forEach(function(item){
+          let expensesName = item.querySelector('.expenses-title').value,
+              expensesCash = item.querySelector('.expenses-amount').value;
+              if(expensesName !== '' && expensesCash !== ''){
+                appData.expenses[expensesName] = +expensesCash;
+              }
+        });
+
+      },
+      getIncome: function() {
+        incomeItems.forEach(function(item){
+          let incomeName = item.querySelector('.income-title').value,
+              incomeCash = item.querySelector('.income-amount').value;
+              // console.log('Вооооо:', incomeName,incomeCash);
+              if(incomeName !== '' && incomeCash !== ''){
+                appData.income[incomeName] = +incomeCash;
+              }
+        });
       },
       getInfoDeposit: function() {
         if(appData.deposit) {
@@ -170,8 +178,8 @@ let appData = {
 
 btnStart.addEventListener('click', appData.start);
 
-btnIncomeAdd.addEventListener('click', appData.addItemIncome);
-btnExpensesAdd.addEventListener('click', appData.addItemExpenses);
+btnIncomeAdd.addEventListener('click', appData.addIncomeBlock);
+btnExpensesAdd.addEventListener('click', appData.addExpensesBlock);
 
 
 
