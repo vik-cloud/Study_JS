@@ -36,10 +36,7 @@ function isNumber(n) {
 }
 let money;
 
-
-
 start();
-
 
 let appData = {
       budget: money,
