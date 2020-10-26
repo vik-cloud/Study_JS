@@ -1,28 +1,28 @@
 'use strict';
 
-const btnStart = document.getElementById('start'),
-      depositCheck = document.querySelector('#deposit-check'),
-      additionalIncomeAll = document.querySelectorAll('.additional_income-item'),
-      additionalIncomeFirst = additionalIncomeAll[0],
-      additionalIncomeSecons = additionalIncomeAll[1],
-      budgetDayValue = document.getElementsByClassName('budget_day-value'),
-      expensesMonthValue = document.getElementsByClassName('expenses_month-value'),
-      additionalIncomeValue = document.getElementsByClassName('additional_income-value'),
-      additionalExpensesValue = document.getElementsByClassName('additional_expenses-value'),
-      incomePeriodValue = document.getElementsByClassName('income_period-value'),
-      targetMonthValue = document.getElementsByClassName('target_month-value'),
-      salaryAmount = document.querySelector('.salary-amount'),
-      incomeTitle = document.querySelector('.income-title'),
-      incomeAmount = document.querySelector('.income-amount'),
-      expensesTitle = document.querySelector('.expenses-title'),
-      expensesAmount = document.querySelector('.expenses-amount'),
-      additionalExpensesItem = document.querySelector('.additional_expenses-item'),
-      depositAmount = document.querySelector('.deposit-amount'),
-      depositPercent = document.querySelector('.deposit-percent'),
-      targetAmount = document.querySelector('.target-amount'),
-      periodSelect = document.querySelector('.period-select');
-
-let btnIncomeAdd = document.querySelector('.income_add'),
+let btnStart = document.getElementById('start'),
+    depositCheck = document.querySelector('#deposit-check'),
+    additionalIncomeAll = document.querySelectorAll('.additional_income-item'),
+    additionalIncomeFirst = additionalIncomeAll[0],
+    additionalIncomeSecons = additionalIncomeAll[1],
+    budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
+    budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
+    expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0],
+    additionalIncomeValue = document.getElementsByClassName('additional_income-value')[0],
+    additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
+    incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
+    targetMonthValue = document.getElementsByClassName('target_month-value')[0],
+    salaryAmount = document.querySelector('.salary-amount'),
+    incomeTitle = document.querySelector('.income-title'),
+    incomeAmount = document.querySelector('.income-amount'),
+    expensesTitle = document.querySelector('.expenses-title'),
+    expensesAmount = document.querySelector('.expenses-amount'),
+    additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+    depositAmount = document.querySelector('.deposit-amount'),
+    depositPercent = document.querySelector('.deposit-percent'),
+    targetAmount = document.querySelector('.target-amount'),
+    periodSelect = document.querySelector('.period-select'),
+    btnIncomeAdd = document.querySelector('.income_add'),
     incomeItems = document.querySelectorAll('.income-items'),
     btnExpensesAdd = document.querySelector('.expenses_add'),
     expensesItems = document.querySelectorAll('.expenses-items');
@@ -61,8 +61,10 @@ let appData = {
         appData.getExpenses();
         appData.getExpensesMonth();
         appData.getBudget(); 
+        appData.showResult();
         // return money;
       },
+
       addIncomeBlock: function() {
         let incomeItemsClone = incomeItems[0].cloneNode(true);
         incomeItems[0].parentNode.insertBefore(incomeItemsClone, btnIncomeAdd);
@@ -157,6 +159,12 @@ let appData = {
                 appData.income[incomeName] = +incomeCash;
               }
         });
+      },
+      showResult: function() {
+        budgetMonthValue.value = appData.budgetMonth;
+        budgetDayValue.value = appData.budgetDay;
+        expensesMonthValue.value = appData.expensesMonth;
+        console.log('budgetMonthValue', budgetMonthValue.value);
       },
       getInfoDeposit: function() {
         if(appData.deposit) {
