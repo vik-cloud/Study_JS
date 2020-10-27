@@ -1,5 +1,4 @@
 'use strict';
-
 let btnStart = document.getElementById('start'),
     depositCheck = document.querySelector('#deposit-check'),
     additionalIncomeAll = document.querySelectorAll('.additional_income-item'),
@@ -65,6 +64,7 @@ let appData = {
         appData.getAddExpenses();
         appData.getAddIncome();
         // appData.getTargetMonth();
+        
         appData.showResult();
         // return money;
       },
@@ -157,30 +157,33 @@ let appData = {
         additionalExpensesValue.value = appData.addExpenses.join(', ');
         additionalIncomeValue.value = appData.addIncome.join(', ');
         targetMonthValue.value = appData.getTargetMonth();
-        // console.log('budgetMonthValue', budgetMonthValue.value);
+        incomePeriodValue.value = appData.calcSavedMoney();
+
+        periodSelect.addEventListener('input', function(){
+          incomePeriodValue.value = appData.calcSavedMoney();
+        });
       },
       getPeriodValue: function(){
-        let period = periodSelect.value;
-        periodAmountValue.textContent = period;
-        return period;
+        periodAmountValue.textContent = periodSelect.value;
       },
-      getInfoDeposit: function(){
-        if(appData.deposit){
-          appData.moneyDeposit = prompt('Введите сумму депозита', 1000);
-          while (!isNumber(appData.moneyDeposit)){
-            appData.moneyDeposit = prompt('Введите сумму депозита', 1000);
-          }
-          appData.percentDeposit = prompt('Введите годовой процент депозита', 10);
-          while (!isNumber(appData.percentDeposit)){
-            appData.percentDeposit = prompt('Введите годовой процент депозита', 10);
-          }
-        }
-      },
+      // getInfoDeposit: function(){
+      //   if(appData.deposit){
+      //     appData.moneyDeposit = prompt('Введите сумму депозита', 1000);
+      //     while (!isNumber(appData.moneyDeposit)){
+      //       appData.moneyDeposit = prompt('Введите сумму депозита', 1000);
+      //     }
+      //     appData.percentDeposit = prompt('Введите годовой процент депозита', 10);
+      //     while (!isNumber(appData.percentDeposit)){
+      //       appData.percentDeposit = prompt('Введите годовой процент депозита', 10);
+      //     }
+      //   }
+      // },
       calcSavedMoney: function(){
-        return appData.budgetMonth * appData.getPeriodValue;
+        return appData.budgetMonth * periodSelect.value;
       }
-    } // End appData{}
+    }; // End appData{}
               
+
 
 btnStart.addEventListener('click', appData.start);
 
