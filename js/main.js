@@ -31,7 +31,18 @@ let renderTodo = function(){
     } else {
       todoList.append(todoItem);
     }
+
+    let todoCompleteBtn = todoItem.querySelector('.todo-complete');
+
     
+    todoCompleteBtn.addEventListener('click', function(){
+      if(item.complited){
+        item.complited = false;
+      } else {
+        item.complited = true;
+      }
+      renderTodo();
+    })
   });
 };
 
@@ -44,4 +55,4 @@ todoControl.addEventListener('submit', function(event){
   renderTodo();
 });
 
-// console.log(todoData[0].value)
+renderTodo();
