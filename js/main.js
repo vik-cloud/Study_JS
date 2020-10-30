@@ -4,6 +4,7 @@ let todoControl = document.querySelector('.todo-control'),
     headerInput  = document.querySelector('.header-input'),
     todoList  = document.querySelector('.todo-list'),
     todoCompleted  = document.querySelector('.todo-completed');
+    // todoRemove  = document.querySelector('.todo-remove');
 
 let todoData = [];
 
@@ -42,7 +43,16 @@ let renderTodo = function(){
       }
       downDataStorage();
       renderTodo();
-    })
+    });
+    // let todoRemoveBtn = todoItem.querySelector('.todo-remove');
+    // todoRemoveBtn.addEventListener('click', function(){
+    //   console.log(item);
+    //   item = '';
+    //   console.log(item);
+    //   downDataStorage();
+    //   renderTodo();
+    // });
+    
   });
 };
 
@@ -57,9 +67,9 @@ todoControl.addEventListener('submit', function(event){
     todoControl.reset();
   }
 });
+
 getDataStorage();
 renderTodo();
-
 
 
 
