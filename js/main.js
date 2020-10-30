@@ -9,13 +9,15 @@ let todoControl = document.querySelector('.todo-control'),
       { value: 'Выгулять собаку',
         complited: false },
       { value: 'Закупить продукты',
-        complited: true }
+        complited: true },
+      { value: 'Багануш',
+      complited: true }
     ];
 
 
 let renderTodo = function(){
-
-
+  todoList.textContent = '';
+  todoCompleted.textContent = '';
   todoData.forEach(function(item){
     let todoItem = document.createElement('li');
     todoItem.classList.add('todo-item');
@@ -24,7 +26,12 @@ let renderTodo = function(){
                             '<button class="todo-remove"></button>' +
                             '<button class="todo-complete"></button>' +
                           '</div>';
-    todoList.append(todoItem);
+    if(item.complited){
+      todoCompleted.append(todoItem);
+    } else {
+      todoList.append(todoItem);
+    }
+    
   });
 };
 
