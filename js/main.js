@@ -27,9 +27,9 @@ let renderTodo = function(){
                             '<button class="todo-complete"></button>' +
                           '</div>';
     if(item.complited){
-      todoCompleted.append(todoItem);
+      todoCompleted.prepend(todoItem);
     } else {
-      todoList.append(todoItem);
+      todoList.prepend(todoItem);
     }
 
     let todoCompleteBtn = todoItem.querySelector('.todo-complete');
@@ -54,6 +54,7 @@ todoControl.addEventListener('submit', function(event){
     let newTodo = {value: headerInput.value, complited: false};
     todoData.push(newTodo);
     renderTodo();
+    todoControl.reset();
   }
 });
 
