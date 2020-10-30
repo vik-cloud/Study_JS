@@ -50,9 +50,11 @@ let renderTodo = function(){
 
 todoControl.addEventListener('submit', function(event){
   event.preventDefault();
-  let newTodo = {value: headerInput.value, complited: false};
-  todoData.push(newTodo);
-  renderTodo();
+  if(headerInput.value !== ''){
+    let newTodo = {value: headerInput.value, complited: false};
+    todoData.push(newTodo);
+    renderTodo();
+  }
 });
 
 renderTodo();
