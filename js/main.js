@@ -4,24 +4,23 @@ let todoControl = document.querySelector('.todo-control'),
     headerInput  = document.querySelector('.header-input'),
     todoList  = document.querySelector('.todo-list'),
     todoCompleted  = document.querySelector('.todo-completed');
-    // todoRemove  = document.querySelector('.todo-remove');
 
 let todoData = [];
 
 let getDataStorage = function(){
-  todoData = JSON.parse(localStorage.getItem('todoDataStorage'));
-  console.log(todoData);
+  if(localStorage.todoDataStorage){
+    todoData = JSON.parse(localStorage.getItem('todoDataStorage'));
+  }
 };
 let downDataStorage = function(){
   localStorage.setItem('todoDataStorage', JSON.stringify(todoData));
 };
 
 
-
 let renderTodo = function(){
   todoList.textContent = '';
   todoCompleted.textContent = '';
-  todoData.forEach(function(item){
+  todoData.forEach(function(item, i, arr){
     let todoItem = document.createElement('li');
     todoItem.classList.add('todo-item');
     todoItem.innerHTML = '<span class="text-todo">' + item.value + '</span>' +
@@ -43,19 +42,16 @@ let renderTodo = function(){
       }
       downDataStorage();
       renderTodo();
-    });
-    // let todoRemoveBtn = todoItem.querySelector('.todo-remove');
-    // todoRemoveBtn.addEventListener('click', function(){
-    //   console.log(item);
-    //   item = '';
-    //   console.log(item);
-    //   downDataStorage();
-    //   renderTodo();
-    // });
-    
+    })
+
+    let todoRemove = todoItem.querySelector('.todo-remove');
+    todoRemove.addEventListener('click', function(){
+      arr = arr.splice(i, 1);
+      downDataStorage();
+      renderTodo();
+    })
   });
 };
-
 
 todoControl.addEventListener('submit', function(event){
   event.preventDefault();
@@ -67,15 +63,7 @@ todoControl.addEventListener('submit', function(event){
     todoControl.reset();
   }
 });
-
 getDataStorage();
 renderTodo();
 
 
-
-
-// let arrTest = ['Ыпь'];
-// let pars;
-// // localStorage.setItem('myData', JSON.stringify(arrTest));
-// arrTest = JSON.parse(localStorage.getItem('myData'));
-// console.log(arrTest)
