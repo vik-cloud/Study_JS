@@ -52,13 +52,15 @@ let appData = {
         salaryAmount.addEventListener('input', function(){
           if(isNumber(salaryAmount.value)){
             btnStart.style.pointerEvents = '';
-            console.log(btnStart.style.pointerEvents);
+            // console.log(btnStart.style.pointerEvents);
           } else {
             btnStart.style.pointerEvents = 'none';
           } 
+          // console.log(this);
         });
       },
       start: function(){
+        // console.log(this);
         appData.budget = salaryAmount.value;
         appData.getExpenses();
         appData.getExpensesMonth();
@@ -75,6 +77,7 @@ let appData = {
         if(incomeItems.length === 3){
           btnIncomeAdd.style.display = 'none';
         }
+        // console.log(this);
       },
       addExpensesBlock: function(){
         let expensesItemsClone = expensesItems[0].cloneNode(true);
@@ -153,9 +156,49 @@ let appData = {
       }
     }; // End appData{}
               
-
+    
 appData.checkSalaryAmount();
-btnStart.addEventListener('click', appData.start);
+// btnStart.addEventListener('click', appData.start);
+let start = appData.start.bind(appData);
+btnStart.addEventListener('click',start);
 btnIncomeAdd.addEventListener('click', appData.addIncomeBlock);
 btnExpensesAdd.addEventListener('click', appData.addExpensesBlock);
 periodSelect.addEventListener('input', appData.getPeriodValue);
+
+
+
+
+
+
+// let ivan = {
+//             age: 24,
+//             work: 'shit',
+//             countru: 'ru',
+//             f2: function(){
+//               console.log(ira.f1())
+//             }
+//             },
+//     oleg = {
+//             age: 18,
+//             work: 'don-t work',
+//             countru: 'ru',
+//             info: function(){
+//               // console.log('My age:',this.age)
+//             }
+//             },
+//     ira = {
+//             age: 38,
+//             work: 'Workis shit',
+//             countru: 'ru',
+//             info: function(){
+//               // console.log('My age:',this.age)
+//             },
+//             f1: function(){
+//               return this.age + 2;
+//             },
+//           };
+
+// let foo = function(){
+//   console.log(ira.f1)
+// }
+
