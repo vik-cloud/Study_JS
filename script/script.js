@@ -31,7 +31,9 @@ let btnStart = document.getElementById('start'),
     incomeItems = document.querySelectorAll('.income-items'),
     btnExpensesAdd = document.querySelector('.expenses_add'),
     periodAmountValue = document.querySelector('.period-amount'),
-    expensesItems = document.querySelectorAll('.expenses-items');
+    expensesItems = document.querySelectorAll('.expenses-items'),
+    dataInputTextAll = document.querySelectorAll('.data input[type=text]');
+// console.log(dataInputTextAll);
 
 
 let appData = {
@@ -66,6 +68,7 @@ let appData = {
         this.getAddExpenses();
         this.getAddIncome();
         this.showResult();
+        appData.disableInput();
       },
       addIncomeBlock: function(){
         let incomeItemsClone = incomeItems[0].cloneNode(true);
@@ -150,6 +153,11 @@ let appData = {
       },
       calcSavedMoney: function(){
         return this.budgetMonth * periodSelect.value;
+      },
+      disableInput: function(){
+        dataInputTextAll.forEach(function(item,i){
+          item.setAttribute("disabled", "disabled");
+        });
       }
     }; // End appData{}
               
