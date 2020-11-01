@@ -33,7 +33,8 @@ let btnStart = document.getElementById('start'),
     btnExpensesAdd = document.querySelector('.expenses_add'),
     periodAmountValue = document.querySelector('.period-amount'),
     expensesItems = document.querySelectorAll('.expenses-items'),
-    dataInputTextAll = document.querySelectorAll('.data input[type=text]');
+    inputAll = document.querySelectorAll('input');
+    
 // console.log(dataInputTextAll);
 
 
@@ -72,7 +73,29 @@ let appData = {
         appData.disableInput();
       },
       reset: function(){
-
+        let dataInputTextAll = document.querySelectorAll('.data input[type=text]');
+        dataInputTextAll.forEach(function(item){
+          item.removeAttribute('disabled');
+        });
+        inputAll.forEach(function(item){
+          item.value = '';
+        });
+        btnStart.style.display = 'inline-block';
+        btnCancel.style.display = 'none';
+        periodSelect.value = 1;
+        appData.getPeriodValue();
+        this.budget = '';
+        this.income = {};
+        this.budgetDay = 0;
+        this.budgetMonth = 0;
+        this.targetMonth = 0;
+        this.expensesMonth = 0;
+        this.addExpenses = [];
+        this.addIncome = [];
+        this.deposit = 0;
+        this.expenses = {};
+        this.moneyDeposit = 0;
+        this.percentDeposit = 0;
       },
       addIncomeBlock: function(){
         let incomeItemsClone = incomeItems[0].cloneNode(true);
@@ -159,6 +182,7 @@ let appData = {
         return this.budgetMonth * periodSelect.value;
       },
       disableInput: function(){
+        let dataInputTextAll = document.querySelectorAll('.data input[type=text]');
         dataInputTextAll.forEach(function(item,i){
           item.setAttribute("disabled", "disabled");
         });
@@ -175,41 +199,8 @@ btnStart.addEventListener('click',start);
 btnIncomeAdd.addEventListener('click', appData.addIncomeBlock);
 btnExpensesAdd.addEventListener('click', appData.addExpensesBlock);
 periodSelect.addEventListener('input', appData.getPeriodValue);
+btnCancel.addEventListener('click', appData.reset);
 
 
 
-
-
-
-// let ivan = {
-//             age: 24,
-//             work: 'shit',
-//             countru: 'ru',
-//             f2: function(){
-//               console.log(ira.f1())
-//             }
-//             },
-//     oleg = {
-//             age: 18,
-//             work: 'don-t work',
-//             countru: 'ru',
-//             info: function(){
-//               // console.log('My age:',this.age)
-//             }
-//             },
-//     ira = {
-//             age: 38,
-//             work: 'Workis shit',
-//             countru: 'ru',
-//             info: function(){
-//               // console.log('My age:',this.age)
-//             },
-//             f1: function(){
-//               return this.age + 2;
-//             },
-//           };
-
-// let foo = function(){
-//   console.log(ira.f1)
-// }
 
