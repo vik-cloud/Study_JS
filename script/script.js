@@ -6,6 +6,7 @@ function isNumber(n){
 
 
 let btnStart = document.getElementById('start'),
+    btnCancel = document.getElementById('cancel'),
     depositCheck = document.querySelector('#deposit-check'),
     additionalIncomeAll = document.querySelectorAll('.additional_income-item'),
     additionalIncomeFirst = additionalIncomeAll[0],
@@ -69,6 +70,9 @@ let appData = {
         this.getAddIncome();
         this.showResult();
         appData.disableInput();
+      },
+      reset: function(){
+
       },
       addIncomeBlock: function(){
         let incomeItemsClone = incomeItems[0].cloneNode(true);
@@ -158,6 +162,8 @@ let appData = {
         dataInputTextAll.forEach(function(item,i){
           item.setAttribute("disabled", "disabled");
         });
+        btnStart.style.display = 'none';
+        btnCancel.style.display = 'inline-block';
       }
     }; // End appData{}
               
