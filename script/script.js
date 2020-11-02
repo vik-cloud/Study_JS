@@ -35,7 +35,7 @@ let btnStart = document.getElementById('start'),
     expensesItems = document.querySelectorAll('.expenses-items'),
     inputAll = document.querySelectorAll('input');
     
-// console.log(dataInputTextAll);
+
 
 
 let appData = {
@@ -84,18 +84,29 @@ let appData = {
         btnCancel.style.display = 'none';
         periodSelect.value = 1;
         appData.getPeriodValue();
-        this.budget = '';
-        this.income = {};
-        this.budgetDay = 0;
-        this.budgetMonth = 0;
-        this.targetMonth = 0;
-        this.expensesMonth = 0;
-        this.addExpenses = [];
-        this.addIncome = [];
-        this.deposit = 0;
-        this.expenses = {};
-        this.moneyDeposit = 0;
-        this.percentDeposit = 0;
+        appData.budget = '';
+        appData.income = {};
+        appData.budgetDay = 0;
+        appData.budgetMonth = 0;
+        appData.targetMonth = 0;
+        appData.expensesMonth = 0;
+        appData.addExpenses = [];
+        appData.addIncome = [];
+        appData.deposit = 0;
+        appData.expenses = {};
+        appData.moneyDeposit = 0;
+        appData.percentDeposit = 0;
+        let deleteAddForm = function(arr){
+
+          incomeItems = document.querySelectorAll('.income-items');
+          console.log('beefore:',arr.length);
+          for (let i = arr.length - 1; i > 0; i--){
+            arr[i].remove();
+          } 
+        };
+        deleteAddForm(incomeItems);
+        deleteAddForm(expensesItems);
+        appData.checkSalaryAmount();
       },
       addIncomeBlock: function(){
         let incomeItemsClone = incomeItems[0].cloneNode(true);
@@ -119,7 +130,7 @@ let appData = {
           }
           return this.expensesMonth;
         },
-      getBudget: function(){ //проверено
+      getBudget: function(){ 
           this.budgetMonth = this.budget - this.expensesMonth;
           this.budgetDay = Math.floor(this.budgetMonth / 30);
         },
@@ -130,7 +141,7 @@ let appData = {
         additionalIncomeAll.forEach(function(item){
           item = item.value.trim();
           if(item !== ''){
-            appData.addIncome.push(item);  // this вернул => undefined
+            appData.addIncome.push(item);
           }
         });
       },
@@ -139,7 +150,7 @@ let appData = {
         addExpenses.forEach(function(item){
           item = item.trim();
           if(item !== ''){
-            appData.addExpenses.push(item); // this вернул => undefined
+            appData.addExpenses.push(item);
           }
         });
       },
@@ -148,8 +159,7 @@ let appData = {
           let expensesName = item.querySelector('.expenses-title').value,
               expensesCash = item.querySelector('.expenses-amount').value;
               if(expensesName !== '' && expensesCash !== ''){
-                // console.log(this);
-                appData.expenses[expensesName] = +expensesCash; // this вернул => undefined
+                appData.expenses[expensesName] = +expensesCash; 
               }
         });
       },
@@ -158,8 +168,8 @@ let appData = {
           let incomeName = item.querySelector('.income-title').value,
               incomeCash = item.querySelector('.income-amount').value;
               if(incomeName !== '' && incomeCash !== ''){
-                appData.income[incomeName] = +incomeCash; // this вернул => undefined
-                appData.budgetMonth += +incomeCash; // this вернул => undefined
+                appData.income[incomeName] = +incomeCash; 
+                appData.budgetMonth += +incomeCash; 
               }
             });
       },
@@ -193,13 +203,15 @@ let appData = {
               
     
 appData.checkSalaryAmount();
-// btnStart.addEventListener('click', appData.start);
+
 let start = appData.start.bind(appData);
 btnStart.addEventListener('click',start);
 btnIncomeAdd.addEventListener('click', appData.addIncomeBlock);
 btnExpensesAdd.addEventListener('click', appData.addExpensesBlock);
 periodSelect.addEventListener('input', appData.getPeriodValue);
 btnCancel.addEventListener('click', appData.reset);
+
+
 
 
 
