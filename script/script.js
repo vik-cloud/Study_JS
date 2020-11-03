@@ -97,7 +97,6 @@ let appData = {
         appData.moneyDeposit = 0;
         appData.percentDeposit = 0;
         let deleteAddForm = function(arr){
-
           incomeItems = document.querySelectorAll('.income-items');
           console.log('beefore:',arr.length);
           for (let i = arr.length - 1; i > 0; i--){
@@ -106,6 +105,8 @@ let appData = {
         };
         deleteAddForm(incomeItems);
         deleteAddForm(expensesItems);
+        btnIncomeAdd.style.display = 'inline-block';
+        btnExpensesAdd.style.display = 'inline-block';
         appData.checkSalaryAmount();
       },
       addIncomeBlock: function(){
