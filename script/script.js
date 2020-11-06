@@ -23,7 +23,6 @@ DomElement.prototype.createElement = function(){
     element.textContent = 'p - best';
     body.prepend(element);
   } 
-  // element.style.fontSize = this.fontSize;
   element.style.background = this.bg;
   element.style.height = this.height + 'px';
   element.style.width = this.width + 'px';
