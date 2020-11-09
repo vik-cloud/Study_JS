@@ -49,7 +49,7 @@ function AppData(){
         this.deposit = 0;
         this.expenses = {};
         this.moneyDeposit = 0;
-        this.percentDeposit = 0;;
+        this.percentDeposit = 0;
         AppData.prototype.checkSalaryAmount = function(){
           btnStart.style.pointerEvents = 'none';
           salaryAmount.addEventListener('input', function(){
@@ -203,22 +203,25 @@ function AppData(){
           });
           btnStart.style.display = 'none';
           btnCancel.style.display = 'inline-block';
+        };
+        AppData.prototype.eventsListeners = function(){
+          this.checkSalaryAmount(); 
+          const _this = this;
+          let start = this.start.bind(this);
+          btnStart.addEventListener('click',start);
+          btnIncomeAdd.addEventListener('click', _this.addIncomeBlock);
+          btnExpensesAdd.addEventListener('click', _this.addExpensesBlock);
+          periodSelect.addEventListener('input', _this.getPeriodValue);
+          btnCancel.addEventListener('click', function(){
+            _this.reset.call(_this);
+          });
         }
   } // End AppData{}
                 
 
 let appData = new AppData();
+appData.eventsListeners();
 
-console.log(appData);
 
       
-  appData.checkSalaryAmount();
-  let start = appData.start.bind(appData);
-  btnStart.addEventListener('click',start);
-  btnIncomeAdd.addEventListener('click', appData.addIncomeBlock);
-  btnExpensesAdd.addEventListener('click', appData.addExpensesBlock);
-  periodSelect.addEventListener('input', appData.getPeriodValue);
-  btnCancel.addEventListener('click', function(){
-    appData.reset.call(appData);
-  });
 
