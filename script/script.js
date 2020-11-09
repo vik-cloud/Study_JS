@@ -95,7 +95,6 @@ function AppData(){
           this.expenses = {};
           this.moneyDeposit = 0;
           this.percentDeposit = 0;
-          console.log('EXPmonth:',this.expensesMonth)
           let deleteAddForm = function(arr){
             incomeItems = document.querySelectorAll('.income-items');
             for (let i = arr.length - 1; i > 0; i--){
@@ -224,4 +223,3 @@ appData.eventsListeners();
 
 
       
-
