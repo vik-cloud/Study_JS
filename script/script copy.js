@@ -36,21 +36,20 @@ let btnStart = document.getElementById('start'),
     inputAll = document.querySelectorAll('input');
 
 
-
-function AppData(){
-        this.budget = '';
-        this.income = {};
-        this.budgetDay = 0;
-        this.budgetMonth = 0;
-        this.targetMonth = 0;
-        this.expensesMonth = 0;
-        this.addExpenses = [];
-        this.addIncome = [];
-        this.deposit = 0;
-        this.expenses = {};
-        this.moneyDeposit = 0;
-        this.percentDeposit = 0;;
-        AppData.prototype.checkSalaryAmount = function(){
+  let appData = {
+        budget: '',
+        income: {},
+        budgetDay: 0,
+        budgetMonth: 0,
+        targetMonth: 0,
+        expensesMonth: 0,
+        addExpenses: [],
+        addIncome: [],
+        deposit: 0,
+        expenses: {},
+        moneyDeposit: 0,
+        percentDeposit: 0,
+        checkSalaryAmount: function(){
           btnStart.style.pointerEvents = 'none';
           salaryAmount.addEventListener('input', function(){
             if(isNumber(salaryAmount.value)){
@@ -59,8 +58,8 @@ function AppData(){
               btnStart.style.pointerEvents = 'none';
             } 
           });
-        };
-        AppData.prototype.start = function(){
+        },
+        start: function(){
           this.budget = salaryAmount.value;
           this.getExpenses();
           this.getExpensesMonth();
@@ -70,8 +69,8 @@ function AppData(){
           this.getAddIncome();
           this.showResult();
           this.disableInput();
-        };
-        AppData.prototype.reset = function(){
+        },
+        reset: function(){
           let dataInputTextAll = document.querySelectorAll('.data input[type=text]');
           dataInputTextAll.forEach(function(item){
             item.removeAttribute('disabled');
@@ -107,37 +106,37 @@ function AppData(){
           btnIncomeAdd.style.display = 'inline-block';
           btnExpensesAdd.style.display = 'inline-block';
           this.checkSalaryAmount();
-        };
-        AppData.prototype.addIncomeBlock = function(){
+        },
+        addIncomeBlock: function(){
           let incomeItemsClone = incomeItems[0].cloneNode(true);
           incomeItems[0].parentNode.insertBefore(incomeItemsClone, btnIncomeAdd);
           incomeItems = document.querySelectorAll('.income-items');
           if(incomeItems.length === 3){
             btnIncomeAdd.style.display = 'none';
           }
-        };
-        AppData.prototype.addExpensesBlock = function(){
+        },
+        addExpensesBlock: function(){
           let expensesItemsClone = expensesItems[0].cloneNode(true);
           expensesItems[0].parentNode.insertBefore(expensesItemsClone, btnExpensesAdd);
           expensesItems = document.querySelectorAll('.expenses-items');
           if(expensesItems.length === 3){
             btnExpensesAdd.style.display = 'none';
           }
-        };
-        AppData.prototype.getExpensesMonth = function(){
+        },
+        getExpensesMonth: function(){
             for(let key in this.expenses){
               this.expensesMonth += this.expenses[key];
             }
             return this.expensesMonth;
-          };
-        AppData.prototype.getBudget = function(){ 
+          },
+        getBudget: function(){ 
             this.budgetMonth = this.budget - this.expensesMonth;
             this.budgetDay = Math.floor(this.budgetMonth / 30);
-          };
-        AppData.prototype.getTargetMonth = function(){
+          },
+        getTargetMonth: function(){
           return Math.ceil(targetAmount.value / this.budgetMonth);
-        };
-        AppData.prototype.getAddIncome = function(){
+        },
+        getAddIncome: function(){
           let localThis = this;
           additionalIncomeAll.forEach(function(item){
             item = item.value.trim();
@@ -145,8 +144,8 @@ function AppData(){
               localThis.addIncome.push(item);
             }
           });
-        };
-        AppData.prototype.getAddExpenses = function(){
+        },
+        getAddExpenses: function(){
           let localThis = this;
           let addExpenses = additionalExpensesItem.value.split(',');
           addExpenses.forEach(function(item){
@@ -155,8 +154,8 @@ function AppData(){
               localThis.addExpenses.push(item);
             }
           });
-        };
-        AppData.prototype.getExpenses = function(){
+        },
+        getExpenses: function(){
           let localThis = this;
           expensesItems.forEach(function(item){
             let expensesName = item.querySelector('.expenses-title').value,
@@ -165,8 +164,8 @@ function AppData(){
                   localThis.expenses[expensesName] = +expensesCash; 
                 }
           });
-        };
-        AppData.prototype.getIncome = function(){
+        },
+        getIncome: function(){
           let localThis = this;
           incomeItems.forEach(function(item){
             let incomeName = item.querySelector('.income-title').value,
@@ -176,8 +175,8 @@ function AppData(){
                   localThis.budgetMonth += +incomeCash; 
                 }
               });
-        };
-        AppData.prototype.showResult = function(){
+        },
+        showResult: function(){
           budgetMonthValue.value = this.budgetMonth;
           budgetDayValue.value = this.budgetDay;
           expensesMonthValue.value = this.expensesMonth;
@@ -189,14 +188,14 @@ function AppData(){
           periodSelect.addEventListener('input', function(){
             incomePeriodValue.value = localThis.calcSavedMoney();
           });
-        };
-        AppData.prototype.getPeriodValue = function(){
+        },
+        getPeriodValue: function(){
           periodAmountValue.textContent = periodSelect.value;
-        };
-        AppData.prototype.calcSavedMoney = function(){
+        },
+        calcSavedMoney: function(){
           return this.budgetMonth * periodSelect.value;
-        };
-        AppData.prototype.disableInput = function(){
+        },
+        disableInput: function(){
           let dataInputTextAll = document.querySelectorAll('.data input[type=text]');
           dataInputTextAll.forEach(function(item,i){
             item.setAttribute("disabled", "disabled");
@@ -204,12 +203,8 @@ function AppData(){
           btnStart.style.display = 'none';
           btnCancel.style.display = 'inline-block';
         }
-  } // End AppData{}
+      }; // End appData{}
                 
-
-let appData = new AppData();
-
-console.log(appData);
 
       
   appData.checkSalaryAmount();
