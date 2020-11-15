@@ -40,7 +40,6 @@ let
   expensesItems = document.querySelectorAll('.expenses-items');
 
 
-
 class AppData {
   constructor() {
     this.budget = '';
@@ -207,7 +206,6 @@ class AppData {
     btnExpensesAdd.addEventListener('click', _this.addExpensesBlock);
     periodSelect.addEventListener('input', _this.getPeriodValue);
     btnCancel.addEventListener('click', () => this.reset.call(this));
-
   }
 } // End AppData{}
                 
